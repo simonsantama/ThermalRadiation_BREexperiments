@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# videos and plots
+*.png
+*.ipynb
+*.mp4
+analysis/video_analysis/Alpha2_flame_contours.pickle
+analysis/video_analysis/Beta1_flame_contours.pickle
+analysis/video_analysis/Beta2_flame_contours.pickle
+analysis/video_analysis/Gamma_flame_contours.pickle
