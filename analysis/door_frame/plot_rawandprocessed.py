@@ -24,7 +24,7 @@ y_labels = ["Temperature [$^\circ$C]",
             "Velocity [m/s]",
             "Neutral Plane [m]",
             "Neutral Plane Smooth [m]",
-            "Mass Flow [kg/s]"]
+            "Mass Flow [kg/s]",]
 y_limits = ([0,1200],
             [0,15],
             [-5,5],
