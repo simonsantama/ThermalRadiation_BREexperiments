@@ -12,7 +12,8 @@ def heightANDdepth(flame, pixel_to_meters, data, roi):
     pixel_to_meters: ratio of meters per pixel
         float
         
-    data: needs to be imported. Dictionary that includes all observed data from each experiment
+    data: needs to be imported. Dictionary that includes all observed data
+          from each experiment
         dict
         
     roi: region of image. 
@@ -74,13 +75,17 @@ def heightANDdepth(flame, pixel_to_meters, data, roi):
     # calculate the flame depth at three different heights
     for i,height in enumerate([height_below, height_door, height_above]):
         
-        # Initialize pt1 and pt2, otherwise the calculation of depth will raise an error
+        """
+        Initialize pt1 and pt2, otherwise the calculation of depth raises
+        an error
+        """
         pt1 = (0,0)
         pt2 = (0,0)
         
         for y_coordinate in range(roi.shape[0]):
             # start from the edge of roi and find where the flame ends
-            inside_flame = cv2.pointPolygonTest(flame, (height, y_coordinate), False)
+            inside_flame = cv2.pointPolygonTest(flame, (height, y_coordinate),
+                                                False)
             # if the point is in the flame
             if inside_flame in [0,1]:
                 pt1 = (height, y_coordinate)
@@ -88,7 +93,8 @@ def heightANDdepth(flame, pixel_to_meters, data, roi):
             
         for y_coordinate in range(roi.shape[0], 0, -1):
             # start from the door and find where the flame starts
-            inside_flame = cv2.pointPolygonTest(flame, (height, y_coordinate), False)
+            inside_flame = cv2.pointPolygonTest(flame, (height, y_coordinate),
+                                                False)
             # if the point is in the flame
             if inside_flame in [0,1]:
                 pt2 = (height, y_coordinate)
@@ -106,6 +112,7 @@ def heightANDdepth(flame, pixel_to_meters, data, roi):
         if i == 2:
             depth_above = depth
     
-    return height_top, height_bottom, flame_projection, depth_below, depth_door, depth_above
+    return (height_top, height_bottom, flame_projection, depth_below,
+            depth_door, depth_above)
     
 

@@ -2,7 +2,8 @@
 This script contains the data observed from the videos. 
 Structured as a dictionary
 
-For the min and maximmum dimensions (used for defining roi), x and y are defined based on real video NOT rotated frame
+For the min and maximmum dimensions (used for defining roi),
+x and y are defined based on real video NOT rotated frame
 """
 
 properties_Alpha2 = {"door_height_px": 840,
@@ -44,5 +45,7 @@ properties_Gamma = {"door_height_px": 805,
                     "door_depth": 60,
                     "total_video_duration": 4677}
 
-properties = {"Alpha2": properties_Alpha2, "Beta1": properties_Beta1, "Beta2": properties_Beta2, 
+properties = {"Alpha2": properties_Alpha2,
+              "Beta1": properties_Beta1,
+              "Beta2": properties_Beta2, 
               "Gamma": properties_Gamma}
