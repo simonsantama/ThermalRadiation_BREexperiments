@@ -1,6 +1,7 @@
 """
-This script uploads the dictionary with the raw flame dimensions data, smoothes the data using
-Savitsky-Golay and then saves that into the processed data folder
+This script uploads the dictionary with the raw flame dimensions data,
+smoothes the data using Savitsky-Golay and then saves that into the
+processed data folder
 
 """
 # import libraries
@@ -23,10 +24,14 @@ for experiment in Flame_Dimensions:
             continue
         else:
             smooth_column_name = f"{column}_smooth"
-            Flame_Dimensions[experiment].loc[:, smooth_column_name] = savgol_filter(Flame_Dimensions[experiment].loc[:, column],
-                            window_length, polyorder)
+            Flame_Dimensions[experiment].loc[
+                :, smooth_column_name] = savgol_filter(
+                    Flame_Dimensions[experiment].loc[:, column],
+                    window_length, polyorder)
 
 # save into the processed data folder
-file_address_save = f"C:/Users/s1475174/Documents/Python_Projects/BRE_Paper_2016/processed_data/Flame_Dimensions.pkl"
+file_address_save = (r"C:/Users/s1475174/Documents/Python_Projects/ThermalRad"
+                     r"iation_BREexperiments/processed_data/Flame_Dimens"
+                     r"ions.pkl")
 with open(file_address_save, 'wb') as handle:
     pickle.dump(Flame_Dimensions, handle)
