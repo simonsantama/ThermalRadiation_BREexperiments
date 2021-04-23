@@ -15,7 +15,6 @@ address_doorframe_fulldata = (r"C:/Users/s1475174/Documents/Python_Projects/T"
 with open(address_doorframe_fulldata, "rb") as handle:
     hrr_fulldata = pickle.load(handle)
 
-# iterate over all the parameters I wish to plot
 fontsize_legend = 6   
     
 fig, ax = plt.subplots(5,1,figsize = (8,11), sharex = True)
