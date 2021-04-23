@@ -5,8 +5,9 @@ cleaned to a point. True raw data from the loggers is not used since I found
 no way to map their position.
 
 This script also uploads and plots the data from the doorway.
-It creates and stores one data frame per experiment in
-'Temperatures_Condensed.pkl'
+Finally, it condenses the data into one dictionary, where every entry is
+a data frame (per experiment) and saves it as temperatures.pkl in the
+processed data folder
 """
 
 import matplotlib.pyplot as plt
@@ -69,6 +70,13 @@ for experiment in list_of_experiments:
 
                     # save the interpolated data in the condensed data frame
                     all_condensed_data[experiment][column] = new_temperature
+
+# save all_condensed_data as a pickle
+condensed_address = (r"C:/Users/s1475174/Documents/Python_Projects/Thermal"
+                     r"Radiation_BREexperiments/processed_dat"
+                     r"a/temperatures_condensed.pkl")
+with open(condensed_address, "wb") as handle:
+    pickle.dump(all_condensed_data, handle)
 
 list_useful_cols = [f"T{x}" for x in [11, 12, 13, 21, 22, 23, 31, 32, 33,
                                       "XX"]]
@@ -177,14 +185,14 @@ for test_name in ["Alpha1", "Alpha2", "Beta1", "Beta2", "Gamma"]:
           color=colors(j/len(list_useful_cols)),
           label=f"{np.linspace(40,260,12)[j]/100} m")
         ax[0,0].legend(fancybox=True, loc="center", fontsize=10,
-                       title="TC Height", ncol=3)
+                        title="TC Height", ncol=3)
     
     print(f" time taken: {np.round(time.time() - start,2)} seconds")
 
     # save and close
     figure_address = (r"C:\Users\s1475174\Documents\Python_Projects\Thermal"
                       r"Radiation_BREexperiments\plotting\onevariable_allexp"
-                      r"eriments\temperatures\raw_dat"
-                      f"a\{test_name}_temperatures_raw.png")
+                      r"eriments\temperature"
+                      f"s\{test_name}_temperatures.png")
     fig.savefig(figure_address, dpi = 600)
     plt.close(fig)
