@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-# Plotting of the raw data to evaluate the algorithm and identify any broken sensors
 test_name = ["Alpha1", "Alpha2", "Beta1", "Beta2", "Gamma"]
 
 address_doorframe_fulldata = (r"C:/Users/s1475174/Documents/Python_Projects/T"
