@@ -59,6 +59,42 @@ for file in os.listdir(address_processed_data):
                         all_data[experiment].loc[:, column] = np.interp(
                             x, xp, fp)
 
+            # parse data thermal radiation data
+            if file == "TSC.pkl":
+                for column in df.columns:
+                    if ("time" in column):
+                        continue
+                    else:
+                        x = all_data[experiment].loc[:, "testing_time"].values
+                        xp = df.loc[:, "testing_time"].values
+                        fp = df.loc[:, column].values 
+                        all_data[experiment].loc[:, column] = np.interp(
+                            x, xp, fp)
+
+            # parse gas phase temperature data
+            if file == "temperatures_condensed.pkl":
+                for column in df.columns:
+                    if ("time" in column):
+                        continue
+                    else:
+                        x = all_data[experiment].loc[:, "testing_time"].values
+                        xp = df.loc[:, "testing_time"].values
+                        fp = df.loc[:, column].values 
+                        all_data[experiment].loc[:, column] = np.interp(
+                            x, xp, fp)
+
+            # parse the HRR data
+            if file == "HRR_total.pkl":
+                for column in df.columns:
+                    if ("time" in column):
+                        continue
+                    else:
+                        x = all_data[experiment].loc[:, "testing_time"].values
+                        xp = df.loc[:, "testing_time"].values
+                        fp = df.loc[:, column].values 
+                        all_data[experiment].loc[:, column] = np.interp(
+                            x, xp, fp)
+
 # save data into an excel file
 with pd.ExcelWriter (os.path.join(address_processed_data,
                                   "all_data_BREexperiments.xlsx")) as writer:
