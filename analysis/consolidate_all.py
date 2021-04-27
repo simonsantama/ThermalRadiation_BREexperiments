@@ -95,6 +95,12 @@ for file in os.listdir(address_processed_data):
                         all_data[experiment].loc[:, column] = np.interp(
                             x, xp, fp)
 
+# save as a pickle
+with open(os.path.join(address_processed_data,
+                       "all_data_BREexperiments.pkl"), "wb") as handle:
+    pickle.dump(all_data, handle)
+
+
 # save data into an excel file
 with pd.ExcelWriter (os.path.join(address_processed_data,
                                   "all_data_BREexperiments.xlsx")) as writer:
