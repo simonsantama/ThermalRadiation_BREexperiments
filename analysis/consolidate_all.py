@@ -28,15 +28,13 @@ for file in os.listdir(address_processed_data):
             if experiment == "Alpha1":
                 continue
             df = data[experiment]
-
             # parse door frame data
             if file == "doorframe_ALLdata.pkl":
                 for column in df.columns:
                     if ("V_" not in column) and (
                         "mass_in" not in column) and (
                         "mass_out" not in column) and (
-                        "Neutral_Plane_Smooth" not in column) and (
-                        "hrr_internal_allmassin" not in column):
+                        "Neutral_Plane_Smooth" not in column):
                         continue
                     else:
                         x = all_data[experiment].loc[:, "testing_time"].values
@@ -88,6 +86,16 @@ for file in os.listdir(address_processed_data):
                 for column in df.columns:
                     if ("time" in column):
                         continue
+                    else:
+                        x = all_data[experiment].loc[:, "testing_time"].values
+                        xp = df.loc[:, "testing_time"].values
+                        fp = df.loc[:, column].values 
+                        all_data[experiment].loc[:, column] = np.interp(
+                            x, xp, fp)
+            if file == "HRR_internal_massin.pkl":
+                for column in df.columns:
+                    if ("time" in column):
+                            continue
                     else:
                         x = all_data[experiment].loc[:, "testing_time"].values
                         xp = df.loc[:, "testing_time"].values

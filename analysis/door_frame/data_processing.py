@@ -407,7 +407,7 @@ def calculation_massflow(df, areas, Cd=0.68):
     df.loc[:, "mass_average"] = df.loc[:, ["mass_in", "mass_out"]].mean(axis = 1)
 
     """
-    calculate HRR assuming all O2 in gets oxydised
+    Calculate HRR assuming all O2 in gets oxydised
     (I later use the juanalyser as well to run a different HRR calc)
     """
     df.loc[:, "hrr_internal_allmassin"] = 0.233 * df.loc[:, "mass_in"] * 13100
